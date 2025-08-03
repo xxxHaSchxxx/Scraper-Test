@@ -1,8 +1,10 @@
 const comments = [
   "Hallo Schnuffbuff",
   "Wie gehts?",
-  "TEST"
+  "TEST",
+  "Test2 - 15:47"
 ];
+
 
 
 
