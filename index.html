@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kommentar-Testseite</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #f9f9f9; }
+    h1 { color: #333; }
+    ul { list-style-type: disc; padding-left: 2em; }
+    li { margin-bottom: 0.5em; }
+  </style>
+</head>
+<body>
+  <h1>Kommentare</h1>
+  <ul id="comment-list"></ul>
+
+  <script src="comments.js"></script>
+  <script>
+    const list = document.getElementById('comment-list');
+    comments.forEach(text => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
