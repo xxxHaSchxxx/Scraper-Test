@@ -1,0 +1,44 @@
+name: Update README weekly
+
+on:
+  schedule:
+    - cron: '0 10 * * 1'  # Montags 12:00 MESZ (10:00 UTC im Sommer)
+  workflow_dispatch:
+
+# WICHTIG: Schreibrechte fürs Repo geben
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo auschecken
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          ref: main   # falls dein Default-Branch "main" heißt
+
+      - name: Zeitstempel in README ersetzen/setzen
+        run: |
+          set -e
+          DATE="Zuletzt aktualisiert am: $(date -u)"
+          # ersetzen, falls vorhanden; sonst anhängen
+          if grep -q "^Zuletzt aktualisiert am:" README.md; then
+            sed -i "s/^Zuletzt aktualisiert am:.*/$DATE/" README.md
+          else
+            printf "\n%s\n" "$DATE" >> README.md
+          fi
+
+      - name: Nur committen/pushen, wenn es Änderungen gibt
+        run: |
+          set -e
+          if git diff --quiet README.md; then
+            echo "Keine Änderungen – überspringe Commit/Push."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "🕒 Zeitstempel aktualisiert: $(date -u)"
+          git push
