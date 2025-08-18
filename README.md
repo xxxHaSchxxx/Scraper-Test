@@ -1,3 +1,3 @@
 
 
-Zuletzt aktualisiert am: Mon Aug 11 10:18:08 UTC 2025
+Zuletzt aktualisiert am: Mon Aug 18 10:17:54 UTC 2025
