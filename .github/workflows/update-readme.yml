@@ -3,6 +3,7 @@ name: Update README weekly
 on:
   schedule:
     - cron: '0 10 * * 1'  # Montags 12:00 MESZ (10:00 UTC im Sommer)
+    - cron: '0 10 * * 4'  # Donnerstags 12:00 MESZ (10:00 UTC im Sommer)
   workflow_dispatch:
 
 # WICHTIG: Schreibrechte fürs Repo geben
